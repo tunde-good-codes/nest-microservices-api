@@ -5,7 +5,7 @@ import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
   process.title = 'catalog';
-  const logger = new Logger('catalogbootstrap');
+  const logger = new Logger('catalog-service');
   const port = Number(process.env.CATALOG_TCP_PORT ?? 4011);
 
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
@@ -18,6 +18,9 @@ async function bootstrap() {
       },
     },
   );
-  await app.listen(port);
+
+  app.enableShutdownHooks();
+  await app.listen();
+  logger.log('catalog service running');
 }
 bootstrap();

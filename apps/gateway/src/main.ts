@@ -4,7 +4,7 @@ import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
   process.title = 'gateway';
-  const logger = new Logger('gatewayBootstrap');
+  const logger = new Logger('gateway-service');
 
   const app = await NestFactory.create(GatewayModule);
   app.enableShutdownHooks();
