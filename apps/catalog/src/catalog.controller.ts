@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { CatalogService } from './catalog.service';
 import { MessagePattern } from '@nestjs/microservices';
 
@@ -6,9 +6,8 @@ import { MessagePattern } from '@nestjs/microservices';
 export class CatalogController {
   constructor(private readonly catalogService: CatalogService) {}
 
-  @Get()
   @MessagePattern('service.ping')
-  getHello() {
+  ping() {
     return this.catalogService.ping();
   }
 }
