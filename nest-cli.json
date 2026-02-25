@@ -4,10 +4,20 @@
   "sourceRoot": ".",
   "compilerOptions": {
     "deleteOutDir": true,
-    "webpack": true  },
+    "webpack": true
+  },
   "monorepo": true,
   "root": ".",
   "projects": {
+    "auth": {
+      "type": "application",
+      "root": "apps/auth",
+      "entryFile": "main",
+      "sourceRoot": "apps/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/auth/tsconfig.app.json"
+      }
+    },
     "catalog": {
       "type": "application",
       "root": "apps/catalog",
