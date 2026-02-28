@@ -1,10 +1,10 @@
-import { NestFactory } from '@nestjs/core';
-import { GatewayModule } from './gateway.module';
-import { Logger } from '@nestjs/common';
+import { NestFactory } from "@nestjs/core";
+import { GatewayModule } from "./gateway.module";
+import { Logger } from "@nestjs/common";
 
 async function bootstrap() {
-  process.title = 'gateway';
-  const logger = new Logger('gateway-service');
+  process.title = "gateway";
+  const logger = new Logger("gateway-service");
 
   const app = await NestFactory.create(GatewayModule);
   app.enableShutdownHooks();
