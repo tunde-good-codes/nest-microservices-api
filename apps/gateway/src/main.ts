@@ -1,15 +1,13 @@
+import "dotenv/config";
 import { NestFactory } from "@nestjs/core";
-import { GatewayModule } from "./gateway.module";
-import { Logger } from "@nestjs/common";
+import { ValidationPipe } from "@nestjs/common";
+import { AppModule } from "./app.module";
 
 async function bootstrap() {
-  process.title = "gateway";
-  const logger = new Logger("gateway-service");
-
-  const app = await NestFactory.create(GatewayModule);
-  app.enableShutdownHooks();
-  const port = Number(process.env.GATEWAY_PORT ?? 3000);
-  await app.listen(port);
-  logger.log(`gateway running on port: ${port}`);
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  await app.listen(3000);
+  console.log("✅ Gateway running on http://localhost:3000");
 }
+
 bootstrap();
