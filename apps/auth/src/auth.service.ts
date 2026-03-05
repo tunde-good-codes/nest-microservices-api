@@ -21,13 +21,13 @@ export class AuthService {
     const existing = await this.prisma.user.findUnique({ where: { email } });
     if (existing) throw new ConflictException("Email already in use");
 
-    // Hash password and create user
-    const hashed = await bcrypt.hash(password, 10);
-    const user = await this.prisma.user.create({
-      data: { email, password: hashed },
-    });
+    // // Hash password and create user
+    // const hashed = await bcrypt.hash(password, 10);
+    // const user = await this.prisma.user.create({
+    //   data: { email, password: hashed },
+    // });
 
-    return this.generateToken(user.id, user.email);
+    // return this.generateToken(user.id, user.email);
   }
 
   async login(email: string, password: string) {
